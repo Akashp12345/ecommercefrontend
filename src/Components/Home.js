@@ -31,8 +31,9 @@ const Home = () => {
     
   })
   useEffect(() => {
+    console.log(process.env.REACT_APP_BACKEND_URL)
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/products`)
+      .get("https://ecommerce-kb3b.onrender.com/products")
       .then((res) => setProductData(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -50,7 +51,7 @@ setUserdata({...userdata,[e.target.name]:e.target.value})
 
   const SendOtp=()=>{
   if(userdata.Email && userdata.Firstname && userdata.Lastname && userdata.Password===userdata.ConfirmPassword ){
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/userverification`,userdata)
+    axios.post("https://ecommerce-kb3b.onrender.com/userverification",userdata)
     .then(res=>setisOtp(true))
     .catch(err=>toast.error("Can't Send OTP",{position:"top-center"}))
   }
@@ -62,7 +63,7 @@ let obj={
   OTP,
   userdata
 }
-axios.post(`${process.env.REACT_APP_BACKEND_URL}/SignUp`,obj)
+axios.post("https://ecommerce-kb3b.onrender.com/SignUp",obj)
 .then(res=>console.log(res.data))
 .catch(err=>console.log(err))
 
